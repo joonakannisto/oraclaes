@@ -26,7 +26,7 @@ func main() {
 			fmt.Println("error: ", err)
 		}
     buf = ECB(key,buf)
-    ServerConn.WriteTo(ret[0:bs], addr)
+    ServerConn.WriteTo(buf[0:bs], addr)
 
   }
 }
