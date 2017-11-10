@@ -18,13 +18,14 @@ func main() {
   ServerConn, err := net.ListenUDP("udp", ServerAddr)
   if err != nil { panic(err)}
   defer ServerConn.Close()
-  buf := make([]byte, 16)
+
   for {
+    buf := make([]byte, 16)
 		_, addr, err := ServerConn.ReadFromUDP(buf)
     if err != nil {
 			fmt.Println("error: ", err)
 		}
-    ret := ECB(key,buf)
+    buf = ECB(key,buf)
     ServerConn.WriteTo(ret[0:bs], addr)
 
   }
